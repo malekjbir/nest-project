@@ -16,10 +16,10 @@ export class PostController {
     return this.postService.create(data);
   }
 
-  @Get("findAllPosts")
-  findAll() {
-    return prisma.post.findMany();
-  }
+  // @Get("findAllPosts")
+  // findAll() {
+  //   return prisma.post.findMany();
+  // }
 
   @Get('/find/:id')
   findOne(@Param('id') id: number) {
