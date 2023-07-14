@@ -4,10 +4,14 @@ WORKDIR /usr/src/app
 
 COPY package.json package-lock.json ./
 
+RUN npm install
+
+RUN npm install @prisma/client
 
 COPY . .
 
-RUN npm run build
+RUN npx prisma generate
+
 
 EXPOSE 3000
 

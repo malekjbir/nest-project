@@ -8,20 +8,20 @@ const prisma = new PrismaClient()
 @Injectable()
 export class PostService {
   create(data: any) {
-    return prisma.post.create({data:data});
+    return prisma.post.create({ data: data });
   }
 
   findAll() {
-    return `This action returns all post`;
+    return prisma.post.findMany({ where: { published: true } });
   }
 
   findOne(id: number) {
-    const response =  prisma.post.findUnique(
+    const response = prisma.post.findUnique(
       {
         where: {
           id: id
         },
-        select : {
+        select: {
           id: true,
           title: true,
           content: true,
@@ -34,11 +34,18 @@ export class PostService {
     return response;
   }
 
-  update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+  update(id: any, data: any) {
+    return prisma.post.update(
+      {
+        where: {
+          id: parseInt(id)
+        },
+        data: data
+      }
+    );
   }
 
   remove(id: number) {
-    return prisma.post.delete({where : {id:id}});
+    return prisma.post.delete({ where: { id: id } });
   }
 }

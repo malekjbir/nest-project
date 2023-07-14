@@ -11,28 +11,28 @@ export class PostController {
 
   @swagger.ApiCreatedResponse({type:CreatePostDto})
   @Post('/create/Post')
-  create(@Body() data: CreatePostDto) {
-    console.log(data);
-    return this.postService.create(data);
+  create(@Body() CreatePostDto: CreatePostDto) {
+    console.log(CreatePostDto);
+    return this.postService.create(CreatePostDto);
   }
 
-  // @Get("findAllPosts")
-  // findAll() {
-  //   return prisma.post.findMany();
-  // }
+   @Get("findAllPosts")
+   findAll() {
+     return this.postService.findAll();
+   }
 
   @Get('/find/:id')
   findOne(@Param('id') id: number) {
-    return this.postService.findOne();
-   
+    return this.postService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.postService.update(+id, updatePostDto);
+  @swagger.ApiCreatedResponse({type:UpdatePostDto})
+  @Patch('update/:id')
+  update(@Param('id') id: number, @Body() updatePostDto: UpdatePostDto) {
+    return this.postService.update(id, updatePostDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.postService.remove(+id);
   }
