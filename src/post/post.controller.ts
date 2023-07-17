@@ -18,6 +18,7 @@ export class PostController {
 
    @Get("findAllPosts")
    findAll() {
+     console.log("findall");
      return this.postService.findAll();
    }
 
