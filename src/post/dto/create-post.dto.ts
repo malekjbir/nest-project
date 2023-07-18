@@ -1,32 +1,43 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ArrayMinSize, IsArray, IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-
 export class CreatePostDto {
 
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    public id: number;
+  @ApiProperty({
+    required: true,
+    type: 'number',
+    name: 'id',
+    description: 'id of the post'
+   })
+  id: number;
   
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    public title: string;
-     
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    public content: string;
+ @ApiProperty({
+  required: true,
+  type: 'string',
+  name: 'title',
+  description: 'title of post'
+  })
+ title: string;
 
-    @ApiProperty()
-    @IsBoolean()
-    public published: boolean;
+ @ApiProperty({
+  required: true,
+  type: 'string',
+  name: 'content',
+  description: 'content of post'
+ })
+ content: string;
 
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    public authorId: number;
-  
- 
+ @ApiProperty({
+  required: true,
+  type: 'boolean',
+  name: 'published',
+  description: 'published of post'
+ })
+ published: boolean;
 
+ @ApiProperty({
+  required: true,
+  type: 'number',
+  name: 'authorId',
+  description: 'authorId of the post'
+ })
+ authorId: number;
 }
